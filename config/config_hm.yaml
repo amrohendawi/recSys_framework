@@ -7,7 +7,7 @@ USER_ID_FIELD: customer_id
 ITEM_ID_FIELD: article_id
 RATING_FIELD: ~
 TIME_FIELD: t_dat
-show_progress: false
+show_progress: true
 
 load_col:
     inter: [customer_id, article_id, t_dat]
@@ -15,9 +15,9 @@ load_col:
     item: [article_id]
 
 # model config
-epochs: 5
-train_batch_size: 150
-eval_batch_size: 150
+epochs: 8
+train_batch_size: 300
+eval_batch_size: 300
 learning_rate: 0.01
 user_inter_num_interval: "[0,inf)"
 item_inter_num_interval: "[0,inf)"
