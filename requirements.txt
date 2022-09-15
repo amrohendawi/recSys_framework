@@ -1,0 +1,10 @@
+recbole~=1.0.1
+torch==1.12.1+cu116
+torchaudio==0.12.1+cu116
+torchvision==0.13.1+cu116
+numpy~=1.23.2
+pandas~=1.4.4
+tqdm~=4.64.1
+PyYAML~=6.0
+
+--find-links https://download.pytorch.org/whl/cu116/torch_stable.html
