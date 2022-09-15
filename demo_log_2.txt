@@ -1,0 +1,214 @@
+(venv) jovyan@jupyter-amro-2ehendawi-40fokus-2efraunhofer-2ede:~/BERT4Rec$ python BERT4Rec.py 
+15 Sep 11:44    INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = ./training_data/hm
+checkpoint_dir = saved
+show_progress = True
+save_dataset = False
+dataset_save_path = None
+save_dataloaders = False
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 8
+train_batch_size = 300
+learner = adam
+learning_rate = 0.01
+neg_sampling = None
+eval_step = 1
+stopping_step = 10
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'RS': [4, 1, 1]}, 'group_by': 'None', 'order': 'TO', 'mode': 'uni50'}
+repeatable = True
+metrics = ['Recall', 'MRR', 'NDCG', 'Hit', 'Precision', 'MAP']
+topk = [12]
+valid_metric = MAP@12
+valid_metric_bigger = True
+eval_batch_size = 300
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 
+seq_separator =  
+USER_ID_FIELD = customer_id
+ITEM_ID_FIELD = article_id
+RATING_FIELD = None
+TIME_FIELD = t_dat
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['customer_id', 'article_id', 't_dat'], 'user': ['customer_id'], 'item': ['article_id']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = False
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+wandb_project = recbole
+require_pow = False
+n_layers = 2
+n_heads = 2
+hidden_size = 64
+inner_size = 256
+hidden_dropout_prob = 0.5
+attn_dropout_prob = 0.5
+hidden_act = gelu
+layer_norm_eps = 1e-12
+initializer_range = 0.02
+mask_ratio = 0.2
+loss_type = CE
+MODEL_TYPE = ModelType.SEQUENTIAL
+MODEL_INPUT_TYPE = InputType.POINTWISE
+eval_type = EvaluatorType.RANKING
+device = cuda
+train_neg_sample_args = {'strategy': 'none'}
+eval_neg_sample_args = {'strategy': 'by', 'by': 50, 'distribution': 'uniform'}
+
+
+15 Sep 11:44    INFO  hm
+The number of users: 1371981
+Average actions of users: 4.747946459831407
+The number of items: 123789
+Average actions of items: 9.662172530965691
+The number of inters: 176296
+The sparsity of the dataset: 99.99989619642594%
+Remain Fields: ['t_dat', 'customer_id', 'article_id']
+15 Sep 11:44    INFO  [Training]: train_batch_size = [300] negative sampling: [None]
+15 Sep 11:44    INFO  [Evaluation]: eval_batch_size = [300] eval_args: [{'split': {'RS': [4, 1, 1]}, 'group_by': 'None', 'order': 'TO', 'mode': 'uni50'}]
+15 Sep 11:44    INFO  BERT4Rec(
+  (item_embedding): Embedding(123790, 64, padding_idx=0)
+  (position_embedding): Embedding(51, 64)
+  (trm_encoder): TransformerEncoder(
+    (layer): ModuleList(
+      (0): TransformerLayer(
+        (multi_head_attention): MultiHeadAttention(
+          (query): Linear(in_features=64, out_features=64, bias=True)
+          (key): Linear(in_features=64, out_features=64, bias=True)
+          (value): Linear(in_features=64, out_features=64, bias=True)
+          (softmax): Softmax(dim=-1)
+          (attn_dropout): Dropout(p=0.5, inplace=False)
+          (dense): Linear(in_features=64, out_features=64, bias=True)
+          (LayerNorm): LayerNorm((64,), eps=1e-12, elementwise_affine=True)
+          (out_dropout): Dropout(p=0.5, inplace=False)
+        )
+        (feed_forward): FeedForward(
+          (dense_1): Linear(in_features=64, out_features=256, bias=True)
+          (dense_2): Linear(in_features=256, out_features=64, bias=True)
+          (LayerNorm): LayerNorm((64,), eps=1e-12, elementwise_affine=True)
+          (dropout): Dropout(p=0.5, inplace=False)
+        )
+      )
+      (1): TransformerLayer(
+        (multi_head_attention): MultiHeadAttention(
+          (query): Linear(in_features=64, out_features=64, bias=True)
+          (key): Linear(in_features=64, out_features=64, bias=True)
+          (value): Linear(in_features=64, out_features=64, bias=True)
+          (softmax): Softmax(dim=-1)
+          (attn_dropout): Dropout(p=0.5, inplace=False)
+          (dense): Linear(in_features=64, out_features=64, bias=True)
+          (LayerNorm): LayerNorm((64,), eps=1e-12, elementwise_affine=True)
+          (out_dropout): Dropout(p=0.5, inplace=False)
+        )
+        (feed_forward): FeedForward(
+          (dense_1): Linear(in_features=64, out_features=256, bias=True)
+          (dense_2): Linear(in_features=256, out_features=64, bias=True)
+          (LayerNorm): LayerNorm((64,), eps=1e-12, elementwise_affine=True)
+          (dropout): Dropout(p=0.5, inplace=False)
+        )
+      )
+    )
+  )
+  (LayerNorm): LayerNorm((64,), eps=1e-12, elementwise_affine=True)
+  (dropout): Dropout(p=0.5, inplace=False)
+)
+Trainable parameters: 8025920
+Train     0: 100%|███████████████████████| 310/310 [00:47<00:00,  6.57it/s, GPU RAM: 4.83 G/10.92 G]
+15 Sep 11:45    INFO  epoch 0 training [time: 47.19s, train loss: 2849.0065]
+Evaluate   : 100%|█████████████████████| 6660/6660 [01:21<00:00, 81.60it/s, GPU RAM: 4.83 G/10.92 G]
+15 Sep 11:47    INFO  epoch 0 evaluating [time: 81.67s, valid_score: 0.419300]
+15 Sep 11:47    INFO  valid result: 
+recall@12 : 0.7243    mrr@12 : 0.5599    ndcg@12 : 0.5428    hit@12 : 0.9158    precision@12 : 0.1553    map@12 : 0.4193
+15 Sep 11:47    INFO  Saving current: saved/BERT4Rec-Sep-15-2022_11-44-55.pth
+Train     1: 100%|███████████████████████| 310/310 [00:44<00:00,  6.92it/s, GPU RAM: 4.83 G/10.92 G]
+15 Sep 11:47    INFO  epoch 1 training [time: 44.77s, train loss: 2703.8749]
+Evaluate   : 100%|█████████████████████| 6660/6660 [01:21<00:00, 81.99it/s, GPU RAM: 4.83 G/10.92 G]
+15 Sep 11:49    INFO  epoch 1 evaluating [time: 81.29s, valid_score: 0.425700]
+15 Sep 11:49    INFO  valid result: 
+recall@12 : 0.7337    mrr@12 : 0.5703    ndcg@12 : 0.5503    hit@12 : 0.921    precision@12 : 0.1565    map@12 : 0.4257
+15 Sep 11:49    INFO  Saving current: saved/BERT4Rec-Sep-15-2022_11-44-55.pth
+Train     2: 100%|███████████████████████| 310/310 [00:45<00:00,  6.81it/s, GPU RAM: 4.83 G/10.92 G]
+15 Sep 11:49    INFO  epoch 2 training [time: 45.53s, train loss: 2678.8273]
+Evaluate   : 100%|█████████████████████| 6660/6660 [01:29<00:00, 74.16it/s, GPU RAM: 4.83 G/10.92 G]
+15 Sep 11:51    INFO  epoch 2 evaluating [time: 89.85s, valid_score: 0.426700]
+15 Sep 11:51    INFO  valid result: 
+recall@12 : 0.7398    mrr@12 : 0.5716    ndcg@12 : 0.5527    hit@12 : 0.9267    precision@12 : 0.1573    map@12 : 0.4267
+15 Sep 11:51    INFO  Saving current: saved/BERT4Rec-Sep-15-2022_11-44-55.pth
+Train     3: 100%|███████████████████████| 310/310 [00:43<00:00,  7.11it/s, GPU RAM: 4.83 G/10.92 G]
+15 Sep 11:52    INFO  epoch 3 training [time: 43.61s, train loss: 2660.7869]
+Evaluate   : 100%|█████████████████████| 6660/6660 [01:18<00:00, 85.24it/s, GPU RAM: 4.83 G/10.92 G]
+15 Sep 11:53    INFO  epoch 3 evaluating [time: 78.18s, valid_score: 0.429300]
+15 Sep 11:53    INFO  valid result: 
+recall@12 : 0.742    mrr@12 : 0.5787    ndcg@12 : 0.5561    hit@12 : 0.9281    precision@12 : 0.1577    map@12 : 0.4293
+15 Sep 11:53    INFO  Saving current: saved/BERT4Rec-Sep-15-2022_11-44-55.pth
+Train     4: 100%|███████████████████████| 310/310 [00:46<00:00,  6.60it/s, GPU RAM: 4.83 G/10.92 G]
+15 Sep 11:54    INFO  epoch 4 training [time: 46.95s, train loss: 2646.2343]
+Evaluate   : 100%|█████████████████████| 6660/6660 [01:19<00:00, 83.76it/s, GPU RAM: 4.83 G/10.92 G]
+15 Sep 11:55    INFO  epoch 4 evaluating [time: 79.57s, valid_score: 0.430200]
+15 Sep 11:55    INFO  valid result: 
+recall@12 : 0.7427    mrr@12 : 0.5796    ndcg@12 : 0.5566    hit@12 : 0.9269    precision@12 : 0.1581    map@12 : 0.4302
+15 Sep 11:55    INFO  Saving current: saved/BERT4Rec-Sep-15-2022_11-44-55.pth
+Train     5: 100%|███████████████████████| 310/310 [00:47<00:00,  6.47it/s, GPU RAM: 4.83 G/10.92 G]
+15 Sep 11:56    INFO  epoch 5 training [time: 47.91s, train loss: 2640.3205]
+Evaluate   : 100%|█████████████████████| 6660/6660 [01:19<00:00, 83.57it/s, GPU RAM: 4.83 G/10.92 G]
+15 Sep 11:57    INFO  epoch 5 evaluating [time: 79.75s, valid_score: 0.432200]
+15 Sep 11:57    INFO  valid result: 
+recall@12 : 0.7434    mrr@12 : 0.5827    ndcg@12 : 0.5583    hit@12 : 0.9299    precision@12 : 0.1579    map@12 : 0.4322
+15 Sep 11:57    INFO  Saving current: saved/BERT4Rec-Sep-15-2022_11-44-55.pth
+Train     6: 100%|███████████████████████| 310/310 [00:48<00:00,  6.40it/s, GPU RAM: 4.83 G/10.92 G]
+15 Sep 11:58    INFO  epoch 6 training [time: 48.43s, train loss: 2627.6503]
+Evaluate   : 100%|█████████████████████| 6660/6660 [01:24<00:00, 78.77it/s, GPU RAM: 4.83 G/10.92 G]
+15 Sep 11:59    INFO  epoch 6 evaluating [time: 84.60s, valid_score: 0.431500]
+15 Sep 11:59    INFO  valid result: 
+recall@12 : 0.7444    mrr@12 : 0.5839    ndcg@12 : 0.5584    hit@12 : 0.9281    precision@12 : 0.1581    map@12 : 0.4315
+Train     7: 100%|███████████████████████| 310/310 [00:43<00:00,  7.11it/s, GPU RAM: 4.83 G/10.92 G]
+15 Sep 12:00    INFO  epoch 7 training [time: 43.62s, train loss: 2620.7378]
+Evaluate   : 100%|█████████████████████| 6660/6660 [01:17<00:00, 85.72it/s, GPU RAM: 4.83 G/10.92 G]
+15 Sep 12:01    INFO  epoch 7 evaluating [time: 77.75s, valid_score: 0.436300]
+15 Sep 12:01    INFO  valid result: 
+recall@12 : 0.7441    mrr@12 : 0.5898    ndcg@12 : 0.5622    hit@12 : 0.9284    precision@12 : 0.1582    map@12 : 0.4363
+15 Sep 12:01    INFO  Saving current: saved/BERT4Rec-Sep-15-2022_11-44-55.pth
+15 Sep 12:01    INFO  Loading model structure and parameters from saved/BERT4Rec-Sep-15-2022_11-44-55.pth
+Evaluate   : 100%|█████████████████████| 7044/7044 [01:29<00:00, 79.08it/s, GPU RAM: 4.83 G/10.92 G]
+15 Sep 12:03    INFO  best valid : OrderedDict([('recall@12', 0.7441), ('mrr@12', 0.5898), ('ndcg@12', 0.5622), ('hit@12', 0.9284), ('precision@12', 0.1582), ('map@12', 0.4363)])
+15 Sep 12:03    INFO  test result: OrderedDict([('recall@12', 0.6969), ('mrr@12', 0.5409), ('ndcg@12', 0.5157), ('hit@12', 0.9018), ('precision@12', 0.1427), ('map@12', 0.3929)])
