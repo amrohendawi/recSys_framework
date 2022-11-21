@@ -1,0 +1,40 @@
+# log config
+#log_wandb: true
+
+# Hyperparameter config
+n_layers: 4
+n_heads: 4
+
+# dataset config
+data_path: ./training_data/
+# Attention: The following fields change from dataset to dataset
+dataset: ml-100k
+field_separator: "\t"
+USER_ID_FIELD: user_id
+ITEM_ID_FIELD: item_id
+RATING_FIELD: ~
+TIME_FIELD: timestamp
+show_progress: true
+load_col:
+    inter: [user_id, item_id, timestamp]
+    user: [user_id]
+    item: [item_id]
+
+# model config
+epochs: 10
+train_batch_size: 3500
+eval_batch_size: 3500
+learning_rate: 0.01
+user_inter_num_interval: "[0,inf)"
+item_inter_num_interval: "[0,inf)"
+filter_inter_by_user_or_item: false
+neg_sampling:
+    uniform: 1
+eval_args:
+    split: {'RS': [4, 1, 1]}
+    group_by: None
+    order: TO
+    mode: uni50
+metrics: ['Recall', 'MRR', 'NDCG', 'Hit', 'Precision', 'MAP']
+topk: 12
+valid_metric: MAP@12

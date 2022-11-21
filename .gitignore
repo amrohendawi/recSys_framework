@@ -3,11 +3,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-models/
-datasets/
-training_data/
-log*/
-
 *.zip
 
 # C extensions
@@ -138,3 +133,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# sub-project specific files
+datasets/
+training_data/
+models/
+
+# log files
+log*/
+wandb
+saved/
