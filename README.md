@@ -14,9 +14,9 @@ To prepare the working environment, please run the following command:
 1. Clone the repository
 
 ```bash
-git clone https://github.com/AdaStruct/Crawlers.git
+git clone https://github.com/amrohendawi/recSys_framework
 
-cd Crawlers/recommender_systems
+cd recommender_systems
 ```
 
 2. Create a virtual environment and activate it
